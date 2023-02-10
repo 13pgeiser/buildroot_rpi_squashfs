@@ -1,0 +1,32 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    name: Publish binaries
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get buildroot
+      run: bash build.sh buildroot
+    - name: Apt packages
+      run: bash build.sh apt
+    - name: Defconfig
+      run: bash build.sh defconfig
+    - name: SDK
+      run: bash build.sh sdk
+    - name: Build
+      run: bash build.sh build
+    - name: Release
+      run: bash build.sh release
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release/*"
+        token: ${{ secrets.GITHUB_TOKEN }}
+
