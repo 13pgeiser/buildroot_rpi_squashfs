@@ -9,6 +9,7 @@ else
 	steps="$@"
 fi
 for step in $steps; do
+	echo "STEP: $step"
 	case $step in
 		"buildroot")
 			if [ ! -e "buildroot-${BUILDROOT_VERSION}.tar.${EXT}" ]; then
