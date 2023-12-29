@@ -1,3 +1,5 @@
-# Just call build.sh
+# Clean and rebuild
+bash ./clean.sh
 bash ./build.sh
 directory_upload release
+bash ./clean.sh
